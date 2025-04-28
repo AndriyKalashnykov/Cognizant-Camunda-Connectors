@@ -32,7 +32,7 @@
         </dependency>
 
         <!-- Camunda -->
-        <dependency>
+        <!-- <dependency>
           <groupId>io.camunda.connector</groupId>
           <artifactId>connector-runtime-spring</artifactId>
           <version>8.7.0</version>
@@ -56,18 +56,34 @@
           <version>8.3.0</version>
         </dependency>
 
+
+
+        <dependency>
+          <groupId>io.camunda.connector</groupId>
+          <artifactId>spring-boot-starter-camunda-connectors</artifactId>
+          <version>8.7.0</version>
+      </dependency> -->
+
         <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-configuration-processor</artifactId>
           <version>3.4.5</version>
           <optional>true</optional>
         </dependency>
-
-        <dependency>
-          <groupId>io.camunda.connector</groupId>
-          <artifactId>spring-boot-starter-camunda-connectors</artifactId>
-          <version>8.7.0</version>
+        
+      <dependency>
+        <groupId>io.camunda.spring</groupId>
+        <artifactId>spring-boot-starter-camunda</artifactId>
+        <version>8.5.18</version>
       </dependency>
+
+      <dependency>
+        <groupId>io.camunda</groupId>
+        <artifactId>zeebe-client-java</artifactId>
+        <version>8.5.17</version>
+    </dependency>
+
+
     </dependencies>
 <!--    <build>
         <plugins>
