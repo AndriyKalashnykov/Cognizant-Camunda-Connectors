@@ -1,6 +1,6 @@
 ```bash
 docker run --rm --name=azure-servicebus-connector \
-    -v $PWD/azure-servicebus-connector/target/azure-servicebus-connector-3.0.0.jar:/opt/app/ \
+    -v $PWD/azure-servicebus-connector/target/azure-servicebus-connector-3.0.0.jar:/opt/app/connector.jar \
     -e ZEEBE_ADDRESS='localhost:26500' \
     -e ZEEBE_CLIENT_ID='zeebe' \
     -e ZEEBE_CLIENT_SECRET='zecret' \
