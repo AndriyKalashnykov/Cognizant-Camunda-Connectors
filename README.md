@@ -34,3 +34,26 @@ In order to deploy this project in runtime environment follow below steps
   ###### **artifactId: cts-camunda-connectors**
   ###### **version: 3.0.0**
  
+```bash
+mvn clean dependency:copy-dependencies package install shade:shade -DskipTests
+```
+
+### Build and run azure-servicebus-connector
+
+```bash
+docker buildx build --load -t azure-servicebus-connector:latest -f Dockerfile .
+
+docker run --rm --name=azure-servicebus-connector \
+  -v $PWD/azure-connectors/azure-servicebus-connector/target/azure-servicebus-connector-3.0.0.jar:/opt/app/ \
+  -e ZEEBE_ADDRESS='localhost:26500' \
+  -e ZEEBE_CLIENT_ID='zeebe' \
+  -e ZEEBE_CLIENT_SECRET='zecret'\
+  -e CAMUNDA_OAUTH_URL='http://localhost:18080/auth/realms/camunda-platform/protocol/openid-connect/token' \
+  -e CAMUNDA_TASKLIST_BASE_URL='http://localhost:8082' \
+  -e CAMUNDA_OPERATE_BASE_URL='http://localhost:8081'  \
+  -e CAMUNDA_OPTIMIZE_BASE_URL='http://localhost:8083' \
+  -e CAMUNDA_MODELER_BASE_URL='http://localhost:8070/api' \
+  -e CAMUNDA_TENANT_ID='<default>' \
+  -e CAMUNDA_SECURE_CONNECTION=false \
+  azure-servicebus-connector:latest
+```

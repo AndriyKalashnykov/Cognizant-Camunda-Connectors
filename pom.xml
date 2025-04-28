@@ -11,7 +11,7 @@
         <maven.compiler.target>21</maven.compiler.target>
 
         <camel.version>4.7.0</camel.version>
-        <connector-core.version>8.5.2</connector-core.version>
+        <connector-core.version>8.7.0</connector-core.version>
 
         <jackson-bom.version>2.17.1</jackson-bom.version>
 
