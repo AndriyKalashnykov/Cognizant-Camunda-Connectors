@@ -6,14 +6,14 @@ WORKDIR /opt/app
 COPY . .
 # COPY env.txt env.txt
 
-RUN mvn clean dependency:copy-dependencies install shade:shade -DskipTests
+RUN mvn clean package install shade:shade -DskipTests
 
 # https://hub.docker.com/r/camunda/connectors-bundle/tags
-FROM camunda/connectors-bundle:0.23.2 AS runtime
+FROM camunda/connectors-bundle:8.7.0 AS runtime
 WORKDIR /opt/app
 
 COPY --from=build /opt/app/azure-connectors/azure-servicebus-connector/target/*.jar connector.jar
-COPY --from=build /opt/app/azure-connectors/azure-servicebus-connector/target/dependency/*.jar .
+# COPY --from=build /opt/app/azure-connectors/azure-servicebus-connector/target/dependency/*.jar .
 # COPY env.txt env.txt
 
 CMD ["java", "-jar", "connector.jar"]
