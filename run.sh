@@ -11,12 +11,6 @@
 #   -e CAMUNDA_SECURE_CONNECTION=false \
 #   azure-servicebus-connector:latest
 
-# cd ~/projects/Cognizant-Camunda-Connectors
-# mvn clean package install -DskipTests
-# cd ~/projects/Cognizant-Camunda-Connectors/azure-connectors/azure-servicebus-connector
-# mvn clean dependency:copy-dependencies package install shade:shade -DskipTests
-# cd ~/projects/Cognizant-Camunda-Connectors
-
 docker run --rm --name=azure-servicebus-connector \
     -v /home/andriy/projects/azure-servicebus-connector/target/azure-servicebus-connector-3.0.0-with-dependencies.jar:/opt/app/connector.jar \
     -e CAMUNDA_CLIENT_MODE=self-managed \

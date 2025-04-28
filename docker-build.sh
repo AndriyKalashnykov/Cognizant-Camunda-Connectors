@@ -1,0 +1,1 @@
+docker buildx build --load -t azure-servicebus-connector:latest -f Dockerfile .

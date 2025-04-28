@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
         name = "CustomAzureServiceBusInboundConnector",
         type = "inbound-azureServiceBus-connector"
 )
-public class AzureServiceBusConsumerExecutable implements InboundConnectorExecutable {
+public class AzureServiceBusConsumerExecutable implements InboundConnectorExecutable<InboundConnectorContext> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AzureServiceBusConsumerExecutable.class);
     private final CamelContext camelContext;
     private final ObjectMapper objectMapper = ObjectMapperSupplier.getMapperInstance();

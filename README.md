@@ -56,4 +56,7 @@ docker run --rm --name=azure-servicebus-connector \
   -e CAMUNDA_TENANT_ID='<default>' \
   -e CAMUNDA_SECURE_CONNECTION=false \
   azure-servicebus-connector:latest
+
+  docker logs --since=1h 'connectors' | tee connectors.log
+  docker logs 'connectors' --follow
 ```
