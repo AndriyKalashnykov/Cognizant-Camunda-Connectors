@@ -46,17 +46,19 @@
           <scope>test</scope>
         </dependency>
 
-        <dependency>
+      <dependency>
+        <groupId>io.camunda.spring</groupId>
+        <artifactId>spring-boot-starter-camunda</artifactId>
+        <version>8.5.18</version>
+      </dependency>
+
+        <!-- <dependency>
           <groupId>io.camunda.connector</groupId>
           <artifactId>spring-boot-starter-camunda-connectors</artifactId>
           <version>8.7.0</version>
-        </dependency>
+        </dependency> -->
 <!-- 
-        <dependency>
-          <groupId>io.camunda.connector</groupId>
-          <artifactId>connector-runtime-spring</artifactId>
-          <version>8.7.0</version>
-        </dependency>
+
 
         <dependency>
           <groupId>io.camunda.spring</groupId>
