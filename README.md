@@ -38,10 +38,20 @@ In order to deploy this project in runtime environment follow below steps
 mvn clean dependency:copy-dependencies package install shade:shade -DskipTests
 ```
 
+
+* [Operate](http://localhost:8081)
+* [Tasklist](http://localhost:8082)
+* [Web Modeler](http://localhost:8070)
+
 ### Build and run azure-servicebus-connector
 
 ```bash
 docker buildx build --load -t azure-servicebus-connector:latest -f Dockerfile .
+
+cd camunda-local && docker compose -f docker-compose-core.yaml up
+cd camunda-local && docker compose -f docker-compose-core.yaml down.
+
+cp ~/projects/Cognizant-Camunda-Connectors/azure-connectors/azure-servicebus-connector/element-template/*.json ~/.config/camunda-modeler/resources/element-templates/
 
 docker run --rm --name=azure-servicebus-connector \
   -v $PWD/azure-connectors/azure-servicebus-connector/target/azure-servicebus-connector-3.0.0.jar:/opt/app/ \
