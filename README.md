@@ -3,10 +3,26 @@
 ## Pre-requisites
 
 * Linux
+* sdkman[https://sdkman.io/]
+  - Install [sdkman](https://sdkman.io/install)
+    ```bash
+    curl -s "https://get.sdkman.io" | bash
+    ```
 * JDK 21
-* Docker
+  - Install and use JDK
+    ```bash
+    sdk install java 21.0.7-tem
+    sdk use java 21.0.7-tem
+    ```
+* [Apache Maven](https://maven.apache.org/install.html)
+  - Install Apache Maven 
+    ```bash
+    sdk install maven 3.9.9
+    sdk use maven 3.9.9
+    ```    
+* [Docker](https://docs.docker.com/engine/install/)
 
-## TDLR: Run a custom connector with Self-Manages Camunda 8.7
+## TDLR: Run a custom connector with Self-Managed Camunda 8.7
 
 ### Copy templates to local [Camunda Desktop Modeler](https://camunda.com/download/modeler/)
 
@@ -21,18 +37,37 @@ cp ~/projects/Cognizant-Camunda-Connectors/azure-connectors/azure-servicebus-con
 - Deploy diagram to "Camunda 8 Self-Managed": use a`space ship` pictogram in status bar), set `Cluster endpoint` to `http://localhost:26500` and `Authentication` as `None`
 - Start BPMN: `Start Current Diagram`- use an `arrow` pictogram in status bar
 
-### Build and run azure-servicebus-connector
+## Build Connector JAR
 
 ```bash
-mvn clean package -DskipTests
-docker buildx build --load -t azure-servicebus-connector:latest -f Dockerfile .
-cd camunda-local && docker compose -f docker-compose-core.yaml up -d
-cd camunda-local && docker compose -f docker-compose-core.yaml down
-
+make build
 docker logs --since=1h 'connectors' | tee connectors.log
 docker logs 'connectors' --follow
+```
 
-cp ./azure-connectors/azure-servicebus-connector/target/*.jar /home/andriy/projects/connector-template-inbound/target/
+## Build Connector Docker Image 
+
+```bash
+make image-build
+```
+
+## Start Docker Compose (uses previously build Connector Docker image)
+
+```bash
+make cmpose-up
+```
+
+## Observe container `connectors` logs
+
+Tail logs
+```bash
+make container-logs
+```
+
+or save as a file
+
+```bash
+docker logs --since=1h 'connectors' | tee connectors.log
 ```
 
 ##### **List of connectors**

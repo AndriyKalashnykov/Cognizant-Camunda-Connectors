@@ -1,0 +1,16 @@
+# https://hub.docker.com/_/maven/tags
+FROM maven:3.9.9-eclipse-temurin-21 AS build
+
+RUN mkdir -p /opt/app
+
+COPY . .
+
+RUN mvn clean package -DskipTests-Dmaven.compiler.plugin.failOnError=true -Dmaven.dependency.verify=false
+
+COPY ./azure-servicebus-connector/target/azure-servicebus-connector-3.0.0-with-dependencies.jar /opt/app/azure-servicebus-connector-3.0.0-with-dependencies.jar
+
+# https://hub.docker.com/r/camunda/connectors-bundle/tags
+FROM camunda/connectors-bundle:8.7.0 AS runtime
+
+COPY --from=build /opt/app/azure-servicebus-connector-3.0.0-with-dependencies.jar /opt/app/azure-servicebus-connector-3.0.0-with-dependencies.jar
+

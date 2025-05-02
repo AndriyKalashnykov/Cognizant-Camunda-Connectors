@@ -95,7 +95,7 @@ services:
 
   connectors: # https://docs.camunda.io/docs/components/integration-framework/connectors/out-of-the-box-connectors/available-connectors-overview/
     # image: camunda/connectors-bundle:${CAMUNDA_CONNECTORS_VERSION}
-    image: connector-template-inbound:latest
+    image: azure-servicebus-connector:latest
     container_name: connectors
     ports:
       - "8085:8080"
