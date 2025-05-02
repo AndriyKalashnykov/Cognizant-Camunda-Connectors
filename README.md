@@ -42,8 +42,6 @@ cp ~/projects/Cognizant-Camunda-Connectors/azure-connectors/azure-servicebus-con
 
 ```bash
 make build
-docker logs --since=1h 'connectors' | tee connectors.log
-docker logs 'connectors' --follow
 ```
 
 ## Build Connector Docker Image 
