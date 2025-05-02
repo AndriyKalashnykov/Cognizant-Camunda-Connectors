@@ -25,7 +25,7 @@
 
 ## TDLR: Run a custom connector [azure-servicebus-connector](/azure-connectors/azure-servicebus-connector) with Self-Managed Camunda 8.7
 
-### Copy templates to local [Camunda Desktop Modeler](https://camunda.com/download/modeler/)
+### Make Connector's templates available to a localy installed [Camunda Desktop Modeler](https://camunda.com/download/modeler/)
 
 ```bash
 cp ~/projects/Cognizant-Camunda-Connectors/azure-connectors/azure-servicebus-connector/element-template/*.json ~/.config/camunda-modeler/resources/element-templates/
