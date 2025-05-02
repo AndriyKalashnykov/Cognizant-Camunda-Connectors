@@ -34,28 +34,23 @@ In order to deploy this project in runtime environment follow below steps
   ###### **artifactId: cts-camunda-connectors**
   ###### **version: 3.0.0**
  
-```bash
-mvn clean dependency:copy-dependencies package install shade:shade -DskipTests
-mvn clean package -DskipTests
-cp ./azure-connectors/azure-servicebus-connector/target/*.jar /home/andriy/projects/connector-template-inbound/target/
-```
-
 
 * [Operate](http://localhost:8081)
 * [Tasklist](http://localhost:8082)
 * [Web Modeler](http://localhost:8070)
 
-### Copy templates to local standalone Camunda Modeler
+### Copy templates to local [Camunda Desktop Modeler](https://camunda.com/download/modeler/)
 
 ```bash
 cp ~/projects/Cognizant-Camunda-Connectors/azure-connectors/azure-servicebus-connector/element-template/*.json ~/.config/camunda-modeler/resources/element-templates/
 ```
 
-### Open standalone Camunda modeler
+### Deploy and run BPMN with [Camunda Desktop Modeler](https://camunda.com/download/modeler/)
 
-- Open `c8-sdk-demo.bpmn`
-- Deploy diagram to "Camunda 8 Self-Managed", set `Cluster endpoint` to `http://localhost:26500` and `Authentication` as `None`
-- Start Current Diagram (aka Run)
+- Start [Camunda Desktop Modeler](https://camunda.com/download/modeler/)
+- Open file `c8-sdk-demo.bpmn`
+- Deploy diagram to "Camunda 8 Self-Managed": use a`space ship` pictogram in status bar), set `Cluster endpoint` to `http://localhost:26500` and `Authentication` as `None`
+- Start BPMN: `Start Current Diagram`- use an `arrow` pictogram in status bar
 
 ### Build and run azure-servicebus-connector
 
@@ -67,6 +62,10 @@ cd camunda-local && docker compose -f docker-compose-core.yaml down
 
 docker logs --since=1h 'connectors' | tee connectors.log
 docker logs 'connectors' --follow
+
+```bash
+cp ./azure-connectors/azure-servicebus-connector/target/*.jar /home/andriy/projects/connector-template-inbound/target/
+```
 ```
 
 ### Running standalone container (never worked)
