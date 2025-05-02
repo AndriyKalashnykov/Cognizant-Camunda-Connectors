@@ -21,6 +21,7 @@
     sdk use maven 3.9.9
     ```    
 * [Docker](https://docs.docker.com/engine/install/)
+* [Camunda Desktop Modeler](https://camunda.com/download/modeler/)
 
 ## TDLR: Run a custom connector with Self-Managed Camunda 8.7
 
