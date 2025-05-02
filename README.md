@@ -36,6 +36,8 @@ In order to deploy this project in runtime environment follow below steps
  
 ```bash
 mvn clean dependency:copy-dependencies package install shade:shade -DskipTests
+mvn clean package -DskipTests
+cp ./azure-connectors/azure-servicebus-connector/target/*.jar /home/andriy/projects/connector-template-inbound/target/
 ```
 
 
@@ -43,16 +45,33 @@ mvn clean dependency:copy-dependencies package install shade:shade -DskipTests
 * [Tasklist](http://localhost:8082)
 * [Web Modeler](http://localhost:8070)
 
+### Copy templates to local standalone Camunda Modeler
+
+```bash
+cp ~/projects/Cognizant-Camunda-Connectors/azure-connectors/azure-servicebus-connector/element-template/*.json ~/.config/camunda-modeler/resources/element-templates/
+```
+
+### Open standalone Camunda modeler
+
+- Open `c8-sdk-demo.bpmn`
+- Deploy diagram to "Camunda 8 Self-Managed", set `Cluster endpoint` to `http://localhost:26500` and `Authentication` as `None`
+- Start Current Diagram (aka Run)
+
 ### Build and run azure-servicebus-connector
 
 ```bash
+mvn clean package -DskipTests
 docker buildx build --load -t azure-servicebus-connector:latest -f Dockerfile .
+cd camunda-local && docker compose -f docker-compose-core.yaml up -d
+cd camunda-local && docker compose -f docker-compose-core.yaml down
 
-cd camunda-local && docker compose -f docker-compose-core.yaml up
-cd camunda-local && docker compose -f docker-compose-core.yaml down.
+docker logs --since=1h 'connectors' | tee connectors.log
+docker logs 'connectors' --follow
+```
 
-cp ~/projects/Cognizant-Camunda-Connectors/azure-connectors/azure-servicebus-connector/element-template/*.json ~/.config/camunda-modeler/resources/element-templates/
+### Running standalone container (never worked)
 
+```bash
 docker run --rm --name=azure-servicebus-connector \
   -v $PWD/azure-connectors/azure-servicebus-connector/target/azure-servicebus-connector-3.0.0.jar:/opt/app/ \
   -e ZEEBE_ADDRESS='localhost:26500' \
@@ -66,7 +85,4 @@ docker run --rm --name=azure-servicebus-connector \
   -e CAMUNDA_TENANT_ID='<default>' \
   -e CAMUNDA_SECURE_CONNECTION=false \
   azure-servicebus-connector:latest
-
-  docker logs --since=1h 'connectors' | tee connectors.log
-  docker logs 'connectors' --follow
-```
+```  

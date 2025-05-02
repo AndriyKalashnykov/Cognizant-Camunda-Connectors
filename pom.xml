@@ -94,7 +94,17 @@
 			<artifactId>mockito-junit-jupiter</artifactId>
 			<version>5.4.0</version>
 			<scope>test</scope>
-		</dependency>
+            <exclusions>
+                <exclusion>
+                    <artifactId>junit-jupiter-api</artifactId>
+                    <groupId>org.junit.jupiter</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>mockito-core</artifactId>
+                    <groupId>org.mockito</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -129,7 +139,31 @@
 				  <groupId>io.grpc</groupId>
 				  <artifactId>grpc-netty</artifactId>
 				</exclusion>
-			</exclusions> 
+                <exclusion>
+                    <artifactId>gson</artifactId>
+                    <groupId>com.google.code.gson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>httpclient5</artifactId>
+                    <groupId>org.apache.httpcomponents.client5</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>httpcore5</artifactId>
+                    <groupId>org.apache.httpcomponents.core5</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>scala-library</artifactId>
+                    <groupId>org.scala-lang</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>zeebe-bpmn-model</artifactId>
+                    <groupId>io.camunda</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 		<dependency>
 			<groupId>com.google.protobuf</groupId>
@@ -140,7 +174,25 @@
 			<groupId>com.google.protobuf</groupId>
 			<artifactId>protobuf-java-util</artifactId>
 			<version>3.25.5</version>
-		</dependency>
+            <exclusions>
+                <exclusion>
+                    <artifactId>error_prone_annotations</artifactId>
+                    <groupId>com.google.errorprone</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>gson</artifactId>
+                    <groupId>com.google.code.gson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>j2objc-annotations</artifactId>
+                    <groupId>com.google.j2objc</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
     <modules>
         <module>common-module</module>
