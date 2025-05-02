@@ -35,7 +35,7 @@ cp ~/projects/Cognizant-Camunda-Connectors/azure-connectors/azure-servicebus-con
 
 - Start local [Camunda Desktop Modeler](https://camunda.com/download/modeler/)
 - Open file `c8-sdk-demo.bpmn`
-- Deploy diagram to "Camunda 8 Self-Managed": use a`spaceship` pictogram in status bar), set `Cluster endpoint` to `http://localhost:26500` and `Authentication` as `None`
+- Deploy diagram to "Camunda 8 Self-Managed": use a`spaceship` pictogram in status bar), set `Cluster endpoint` to `http://localhost:26500` and `Authentication` to `None`
 - Start BPMN: `Start Current Diagram`- use an `arrow` pictogram in status bar
 
 ## Build Connector JAR
